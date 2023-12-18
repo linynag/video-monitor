@@ -36,8 +36,8 @@ public abstract class StressTest {
     public static final String host = "127.0.0.1";
     public static final int port = QuickStart.port;
 
-    public static final int size = 1000;
-    public static final long Interval = 4;
+    public static final int size = 10;
+    public static final long Interval = 5000;
 
     public static void main(String[] args) throws Exception {
 //        Client[] clients = Client.UDP(host, port, size);
@@ -49,7 +49,7 @@ public abstract class StressTest {
         }
 
         Thread.sleep(500L);
-        ByteBuf imagePacket = packet();
+        // ByteBuf imagePacket = packet();
 
         Object[] points = locations();
         LocalDateTime deviceTime = LocalDateTime.now();
@@ -64,16 +64,16 @@ public abstract class StressTest {
             for (int i = 0; i < size; i++) {
                 T0200 message = T0200(i, deviceTime, point);
 
-//                T0801 message = T0801(i, strTime, point);
-//                imagePacket.readerIndex(0);
-//                message.setPacket(imagePacket);
+               // T0801 message = T0801(i, deviceTime, point);
+               // imagePacket.readerIndex(0);
+               // message.setPacket(imagePacket);
 
                 clients[i].send(getBytes(message));
                 s.increment();
             }
             try {
-                Thread.sleep(Interval);
-            } catch (InterruptedException e) {
+                           Thread.sleep(Interval);
+ } catch (InterruptedException e) {
             }
         }
     }
