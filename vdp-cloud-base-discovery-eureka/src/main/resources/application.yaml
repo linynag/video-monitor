@@ -1,0 +1,103 @@
+eureka:
+  datacenter: cloud # 修改eureka web系统状态显示
+  environmemt: develop # 修改eureka web系统状态显示
+  instance:
+    prefer-ip-address: true #按主机名默认访问方法，我们通常要配置true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}} #在Eureka web上修改实例显示名称
+spring:
+  application:
+    name: vdp-cloud-base-discovery-eureka
+  cloud:
+    config:
+      enabled: false
+
+---
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false   # 不要向自身注册
+    fetch-registry: false         # 不从其他实例获取注册表信息
+
+
+#---
+#
+#server:
+#  port: 8761
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver2:8762/eureka/,http://eurekaserver2:8763/eureka/
+#spring:
+#  profiles: peer1
+#
+#---
+#
+#server:
+#  port: 8762
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver1:8762/eureka/,http://eurekaserver2:8763/eureka/
+#spring:
+#  profiles: peer2
+#---
+#
+#server:
+#  port: 8763
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver1:8762/eureka/,http://eurekaserver2:8762/eureka/
+#spring:
+#  profiles: peer3
+
+
+
+
+
+#
+#---
+#
+#server:
+#  port: 8761
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver2:8762/eureka/
+#spring:
+#  profiles: peer1
+#
+#---
+#
+#server:
+#  port: 8762
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver1:8761/eureka/
+#spring:
+#  profiles: peer2
+#
+#---
+#
+#server:
+#  port: 8763
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://eurekaserver1:8761/eureka/,http://eurekaserver2:8762/eureka/
+#spring:
+#  profiles: peer3

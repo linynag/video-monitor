@@ -1,0 +1,26 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: jtt808-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: vdp-cloud-base-config-server
+#      #profile: {profile}  # dev,test,prod
+      fail-fast: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    ### 开启心跳检查导致在eureka状态异常
+#    healthcheck: # dependency on spring-boot-starter-actuator
+#      enabled: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+
+

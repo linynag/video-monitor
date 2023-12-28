@@ -1,6 +1,9 @@
 spring:
   application:
     name: jt808
+  cloud:
+    config:
+      enabled: false
   datasource:
     url: jdbc:h2:file:~/.h2/jt;auto_server=true;ignorecase=true;mode=mysql
     username: root
@@ -41,6 +44,22 @@ spring:
       date-time: yyyy-MM-dd HH:mm:ss
       date: yyyy-MM-dd
       time: HH:mm:ss
+  redis:
+    sentinel:
+      password: 12345678
+      master: mymaster
+      nodes:
+        - 192.168.43.111:7010
+        - 192.168.43.111:7011
+        - 192.168.43.111:7012
+  rabbitmq:
+    host: 192.168.43.111
+    port: 5672
+    username: admin
+    password: admin
+    startupInit: true
+
+
 
 mybatis:
   configuration:
@@ -50,8 +69,12 @@ mybatis:
   mapper-locations:
     - classpath:/mapper/*.xml
 
-server:
-  port: 8000
+
+#原始数据MQ转发开关
+rawDataMQTransfer: false
+
+#验证上报时间与服务器时间差丢弃（分钟）
+rawDataCheckTimeDiff: 10
 
 jt-server:
   jt808:

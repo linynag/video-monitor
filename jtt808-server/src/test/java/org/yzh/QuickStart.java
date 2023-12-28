@@ -25,7 +25,7 @@ public class QuickStart {
 
     public static void main(String[] args) {
         LogUtils.setLevel(Level.WARN);
-        DispatcherHandler.STOPWATCH = true;
+        DispatcherHandler.STOPWATCH = true;  //打印调用耗时
 
         Server tcpServer = new NettyConfig.Builder()
                 .setPort(port)
@@ -34,7 +34,7 @@ public class QuickStart {
                 .setDecoder(messageAdapter)
                 .setEncoder(messageAdapter)
                 .setHandlerMapping(handlerMapping)
-                .setHandlerInterceptor(handlerInterceptor)
+                .setHandlerInterceptor(handlerInterceptor)   //设置拦截器
                 .setSessionManager(sessionManager)
                 .setName("808-TCP")
                 .build();

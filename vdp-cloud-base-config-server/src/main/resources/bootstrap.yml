@@ -1,0 +1,24 @@
+server:
+  port: 8801
+
+spring:
+  application:
+    name: vdp-cloud-base-config-server
+  profiles:
+    active: native # 要使用本机配置文件，请使用spring.profiles.active = native启动配置服务器。
+  cloud:
+    config:
+      enabled: false
+      #profile: test
+      server:
+        svn:
+          uri: https://183.63.187.148/svn/vehicledatas/src/02GDCP/05vdp-cloud/01trunk/vdp-cloud/conf
+          username: springljw
+          password: 123456
+          search-paths: vdp-cloud-sc,vdp-cloud-vlr,vdp-cloud-event,vdp-cloud-scene,vdp-cloud-task,vdp-cloud-dqs,vdp-cloud-fence,vdp-cloud-validate
+          default-label: config
+          #basedir: /Users/victorlau/configtest/
+          
+management:
+  security:
+    enabled: true

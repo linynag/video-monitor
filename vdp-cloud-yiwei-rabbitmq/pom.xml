@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.yzh</groupId>
+        <artifactId>jtt808-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <version>2.1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>vdp-cloud-yiwei-rabbitmq</artifactId>
+    <name>vdp-cloud-yiwei-rabbitmq</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.yzh</groupId>
+            <artifactId>vdp-cloud-yiwei-component</artifactId>
+            <version>2.1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- rabbitmq的jar -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>2.7.15</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+        </dependency>
+
+
+    </dependencies>
+</project>
