@@ -25,6 +25,7 @@
         <module>vdp-cloud-yiwei-component</module>
         <module>vdp-cloud-base-config-server</module>
         <module>vdp-cloud-base-discovery-eureka</module>
+        <module>web</module>
 
     </modules>
 
