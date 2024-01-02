@@ -4,6 +4,7 @@ spring:
   cloud:
     config:
       enabled: false
+
   datasource:
     url: jdbc:h2:file:~/.h2/jt;auto_server=true;ignorecase=true;mode=mysql
     username: root
@@ -44,21 +45,33 @@ spring:
       date-time: yyyy-MM-dd HH:mm:ss
       date: yyyy-MM-dd
       time: HH:mm:ss
+    path match:
+      matching-strategy: ant-path-matcher
+
+system:
+  ##### redis配置 ######
   redis:
-    sentinel:
-      password: 12345678
-      master: mymaster
-      nodes:
+    model: sentinel  #sentinel,sharded,cluster,（不填时不会初始化redis）
+    password: 12345678
+    sentinelProps:
+      masterName: mymaster  # 主从模式中主节点名字
+      sentinels: # 主从模式中节点
         - 192.168.43.111:7010
         - 192.168.43.111:7011
         - 192.168.43.111:7012
+    timeout: 80000000
   rabbitmq:
     host: 192.168.43.111
     port: 5672
     username: admin
     password: admin
-    startupInit: true
-
+  swagger:
+    enable: true              #是否开启swagger,在生产环境下需要关闭
+    protocol: http          #协议，http或https
+    base-package: com.yzh.web.controller   #一定要写对，会在这个路径下扫描controller定义
+    title: 车机连接服务(SC)REST API
+    version: 1.0
+    description: jtt808项目RESTful API
 
 
 mybatis:
@@ -69,6 +82,8 @@ mybatis:
   mapper-locations:
     - classpath:/mapper/*.xml
 
+server:
+  port: 8000
 
 #原始数据MQ转发开关
 rawDataMQTransfer: false
@@ -92,3 +107,13 @@ jt-server:
     enable: true
     port: 7612
     path: D:/jt_data/alarm_file
+
+  ###SC服务中的线程数等
+  server:
+    ### 车机认证,通过开关来控制是否开启
+    devAuthentication:
+      open: false
+    ### 数据处理服务,通过该服务解析数据,是SC的核心服务
+    dataHandle:
+      threadNum: 4
+      queueDepth: 10000

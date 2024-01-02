@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @ClassName ScProperties
  * @Description SC为服务的内部服务配置类
  */
-@ConfigurationProperties(prefix = "sc.server")
+@ConfigurationProperties(prefix = "jt-server.server")
 @Component
 public class SCProps {
 
