@@ -1,10 +1,9 @@
-package com.yiwei.utils;
+package com.yiwei.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * @author 35238
- * @date 2023/7/11 0011 15:43
+ *
  */
 //响应类
 @JsonInclude(JsonInclude.Include.NON_NULL)

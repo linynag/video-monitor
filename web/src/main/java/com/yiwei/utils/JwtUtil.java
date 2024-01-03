@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
@@ -11,24 +12,23 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * @author 35238
- * @date 2023/7/11 0011 15:46
+ * JWT工具类
  */
-//JWT工具类
 public class JwtUtil {
 
-    //有效期为
-    public static final Long JWT_TTL = 60 * 60 *1000L;// 60 * 60 *1000  一个小时
-    //设置秘钥明文, 注意长度必须大于等于6位
-    public static final String JWT_KEY = "huanfqc";
+    // 有效期为
+    public static final Long JWT_TTL = 60 * 60 * 1000L;// 60 * 60 *1000  一个小时
+    // 设置秘钥明文, 注意长度必须大于等于6位
+    public static final String JWT_KEY = "1VTRUCK";
 
-    public static String getUUID(){
+    public static String getUUID() {
         String token = UUID.randomUUID().toString().replaceAll("-", "");
         return token;
     }
 
     /**
      * 生成jtw
+     *
      * @param subject token中要存放的数据（json格式）
      * @return
      */
@@ -39,7 +39,8 @@ public class JwtUtil {
 
     /**
      * 生成jtw
-     * @param subject token中要存放的数据（json格式）
+     *
+     * @param subject   token中要存放的数据（json格式）
      * @param ttlMillis token超时时间
      * @return
      */
@@ -53,22 +54,23 @@ public class JwtUtil {
         SecretKey secretKey = generalKey();
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        if(ttlMillis==null){
-            ttlMillis=JwtUtil.JWT_TTL;
+        if (ttlMillis == null) {
+            ttlMillis = JwtUtil.JWT_TTL;
         }
         long expMillis = nowMillis + ttlMillis;
         Date expDate = new Date(expMillis);
         return Jwts.builder()
-                .setId(uuid)              //唯一的ID
+                .setId(uuid)              // 唯一的ID
                 .setSubject(subject)   // 主题  可以是JSON数据
-                .setIssuer("huanf")     // 签发者
+                .setIssuer("yiwei")     // 签发者
                 .setIssuedAt(now)      // 签发时间
-                .signWith(signatureAlgorithm, secretKey) //使用HS256对称加密算法签名, 第二个参数为秘钥
+                .signWith(signatureAlgorithm, secretKey) // 使用HS256对称加密算法签名, 第二个参数为秘钥
                 .setExpiration(expDate);
     }
 
     /**
      * 创建token
+     *
      * @param id
      * @param subject
      * @param ttlMillis
@@ -79,14 +81,25 @@ public class JwtUtil {
         return builder.compact();
     }
 
+    // public static void main(String[] args) throws Exception {
+    //
+    //     // 加密指定字符串，xxjwt是123456加密后的密文
+    //     String xxjwt = createJWT("123456");
+    //     System.out.println(xxjwt);
+    // }
+    //
     public static void main(String[] args) throws Exception {
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjYWM2ZDVhZi1mNjVlLTQ0MDAtYjcxMi0zYWEwOGIyOTIwYjQiLCJzdWIiOiJzZyIsImlzcyI6InNnIiwiaWF0IjoxNjM4MTA2NzEyLCJleHAiOjE2MzgxMTAzMTJ9.JVsSbkP94wuczb4QryQbAke3ysBDIL5ou8fWsbt_ebg";
-        Claims claims = parseJWT(token);
-        System.out.println(claims);
+        Claims xxclaims = parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlY2Y2ZGU3ODE0N2Y0NzI4OGRkN2JjM2JjYzBiYTQ1OCIsInN1YiI6IjEyMzQ1NiIsImlzcyI6Inlpd2VpIiwiaWF0IjoxNzA0MjUzNTUyLCJleHAiOjE3MDQyNTcxNTJ9.9cmMAnYCLBd1_jsgFhxeLQ7lnG9DF6TT-jk0SWE649I");
+        // 把上面那行的密文解密(校验)为原文
+        String yysubject = xxclaims.getSubject();
+        // 输出解密后的原文
+        System.out.println(yysubject);
     }
+
 
     /**
      * 生成加密后的秘钥 secretKey
+     *
      * @return
      */
     public static SecretKey generalKey() {

@@ -8,9 +8,9 @@ create table if not exists sys_user
 (
     id          bigint                             not null comment '主键'
         primary key,
-    account     varchar(50)                        not null comment '用户账号',
-    password    int                                not null comment '用户密码',
-    username    varchar(50)                        not null comment '用户昵称',
+    account     varchar(100)                        not null comment '用户账号',
+    password    varchar(300)                       not null comment '用户密码',
+    username    varchar(100)                        not null comment '用户昵称',
     status      tinyint  default 1                 not null comment '用户状态，0无效，1有效',
     org_id      bigint                             not null comment '用户所属组织',
     phone       varchar(50)                        not null comment '电话',
@@ -20,9 +20,11 @@ create table if not exists sys_user
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     update_time datetime default CURRENT_TIMESTAMP null comment '修改时间',
     create_by   bigint                             null comment '创建用户id',
-    update_by   bigint                             null comment '修改用户id'
+    update_by bigint null comment '修改用户id'
 )
     comment '用户表';
+insert into sys_user values (1,'admin','{noop}123456','管理员',default,1,1,1,default,default,default,default,1,1);
+
 
 -- 组织表
 create table if not exists sys_org
