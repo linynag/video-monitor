@@ -4,7 +4,6 @@ import com.yiwei.common.ResponseResult;
 import com.yiwei.web.domain.sysUser.SysUser;
 import com.yiwei.web.service.sysUser.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,10 +18,19 @@ public class SysUserController {
         return userService.login(user);
     }
 
+
+    @RequestMapping("/logout")
+    public ResponseResult logout(){
+        return userService.logout();
+    }
+
     @RequestMapping("/hello")
     public String hello() {
         return "用户管理中心";
     }
+
+
+
 
     @GetMapping("/list")
     public void listUserByPage() {
