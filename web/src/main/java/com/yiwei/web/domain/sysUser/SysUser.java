@@ -1,5 +1,6 @@
 package com.yiwei.web.domain.sysUser;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -28,7 +29,7 @@ public class SysUser implements Serializable {
     /**
      * 用户密码
      */
-    private Integer password;
+    private String password;
 
     /**
      * 用户昵称
