@@ -1,29 +1,56 @@
 package com.yiwei.web.domain.login;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.yiwei.web.domain.sysUser.SysUser;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 实现UserDetails接口之后，要重写UserDetails接口里面的7个方法
  */
 @Data // get和set方法
 @NoArgsConstructor // 无参构造
-@AllArgsConstructor  // 带参构造
 public class LoginUser implements UserDetails {
 
     private SysUser user;
 
-    @Override
-    // 用于返回权限信息。现在我们正在学'认证'，'权限'后面才学。所以返回null即可
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    // 查询用户权限信息
+    private List<String> permissions;
+
+    // 不让authorities成员变量序列化存入redis，避免redis不支持而报异常
+    @JSONField(serialize = false)
+    private List<SimpleGrantedAuthority> authorities;
+
+    public LoginUser(SysUser xxuser, List<String> permissions) {
+        this.user = xxuser;
+        this.permissions = permissions;
     }
+
+    /**
+     * 重写GrantedAuthority接口的getAuthorities方法
+     */
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // 当authorities集合为空，就说明是第一次，就需要转换，当不为空就说明不是第一次，就不需要转换直接返回
+        if (authorities != null) { // 严谨来说这个if判断是避免整个调用链中security本地线程变量在获取用户时的重复解析，和redis存取无关
+            return authorities;
+        }
+        authorities = permissions
+                .stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+
+        // 最终返回转换结果
+        return authorities;
+    }
+
 
     @Override
     // 用于获取用户密码。由于使用的实体类是User，所以获取的是数据库的用户密码

@@ -45,7 +45,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("token非法");
         }
         String redisKey = "login:" + userid;
-        LoginUser loginUser = (LoginUser) redisCache.getCacheObject(redisKey);
+        LoginUser loginUser = redisCache.getCacheObject(redisKey);
         // redis里面可能并不存在这个用户信息，例如缓存过期了
         if (Objects.isNull(loginUser)) {
             throw new RuntimeException("用户未登录");
@@ -54,8 +54,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         // 把最终的LoginUser用户信息，通过setAuthentication方法，存入SecurityContextHolder
         // TODO 获取权限信息封装到Authentication中
         UsernamePasswordAuthenticationToken authenticationToken =
-                // 第一个参数是LoginUser用户信息，第二个参数是凭证(null)，第三个参数是权限信息(null)
-                new UsernamePasswordAuthenticationToken(loginUser, null, null);
+                // 第一个参数是LoginUser用户信息，第二个参数是凭证(null)，第三个参数是权限信息()
+                new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
         // 全部做完之后，就放行
