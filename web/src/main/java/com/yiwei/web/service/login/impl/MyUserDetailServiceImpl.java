@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * 重写MyUserDetailServiceImpl的loadUserByUsername
- * 更换为适合本项目的登录信息
+ * 重写 MyUserDetailServiceImpl 的 loadUserByUsername
+ * 更换为本项目的数据库用户表的登录信息
  */
 @Service
 public class MyUserDetailServiceImpl implements UserDetailsService {

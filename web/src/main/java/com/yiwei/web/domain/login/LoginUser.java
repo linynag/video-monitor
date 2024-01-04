@@ -28,8 +28,8 @@ public class LoginUser implements UserDetails {
     @JSONField(serialize = false)
     private List<SimpleGrantedAuthority> authorities;
 
-    public LoginUser(SysUser xxuser, List<String> permissions) {
-        this.user = xxuser;
+    public LoginUser(SysUser user, List<String> permissions) {
+        this.user = user;
         this.permissions = permissions;
     }
 

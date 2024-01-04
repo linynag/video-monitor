@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sys/user")
+@PreAuthorize("hasAuthority('userMgr:list')")
 public class SysUserController {
     @Autowired
     private SysUserService userService;
@@ -30,7 +31,6 @@ public class SysUserController {
 
 
     @RequestMapping("/list")
-    @PreAuthorize("hasAuthority('userMgr:list')")
     public String list() {
         return "用户管理中心:查看";
 
