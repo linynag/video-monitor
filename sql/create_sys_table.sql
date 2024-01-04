@@ -41,7 +41,7 @@ create table if not exists sys_org
     code          varchar(100)                       not null comment '机构编码',
     name          varchar(100)                       not null comment '组织名称',
     parent_id     bigint                             null comment '父类id',
-    path          varchar(300)                       null comment '路径',
+    path          varchar(2500)                      null comment '路径',
     sort          int      default 1                 not null comment '排序',
     level         tinyint  default 1                 not null comment '等级,1一级，2二级，3三级',
     manager_name  varchar(100)                       null comment '负责人姓名',
@@ -91,13 +91,12 @@ create table if not exists sys_menu
     code        varchar(100)                       not null comment '编码',
     name        varchar(100)                       not null comment '名称',
     parent_id   bigint                             null comment '父类id',
-    path        varchar(300)                       null comment '路径',
     sort        int      default 1                 not null comment '排序',
+    path        varchar(2500)                      null comment '路径',
     level       tinyint  default 1                 not null comment '等级',
     node_type   tinyint  default 1                 not null comment '节点类型，1根节点,2菜单,3页面,4按钮', --
-    link_url    varchar(255)                       null comment '页面对应地址',
-    icon_url    varchar(20)                        null comment '图标地址',
-
+    link_url    varchar(500)                       null comment '页面对应地址',
+    icon_url    varchar(500)                       null comment '图标地址',
     is_delete   tinyint  default 0                 not null comment '是否删除，0否，1是',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     update_time datetime default CURRENT_TIMESTAMP null comment '修改时间',
@@ -107,25 +106,25 @@ create table if not exists sys_menu
     comment '菜单功能表';
 truncate table sys_menu;
 insert into sys_menu
-values (0, 'root', '根节点', 0, null, 1, 1, 1, null, null, 0, default, default, default, default),
-       (1, 'system', '系统配置', 0, '0,1', 1, 2, 2, null, null, 0, default, default, default, default),
-       (2, 'orgMgr', '机构管理', 1, '0,1,2', 1, 3, 3, null, null, 0, default, default, default,
+values (0, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, default, default, default),
+       (1, 'system', '系统配置', 0, 1, '0,1', 2, 2, null, null, 0, default, default, default, default),
+       (2, 'orgMgr', '机构管理', 1, 1, '0,1,2', 3, 3, null, null, 0, default, default, default,
         default),
-       (3, 'userMgr', '用户管理', 1, '0,1,3', 2, 3, 3, null, null, 0, default, default, default,
+       (3, 'userMgr', '用户管理', 1, 2, '0,1,3', 3, 3, null, null, 0, default, default, default,
         default),
-       (4, 'userMgr:list', '用户管理-查看', 3, '0,1,3,4', 1, 4, 4, null, null, 0, default, default,
+       (4, 'userMgr:list', '用户管理-查看', 3, 1, '0,1,3,4', 4, 4, null, null, 0, default, default,
         default, default),
-       (5, 'userMgr:add', '用户管理-新增', 3, '0,1,3,5', 2, 4, 4, null, null, 0, default, default,
+       (5, 'userMgr:add', '用户管理-新增', 3, 2, '0,1,3,5', 4, 4, null, null, 0, default, default,
         default, default);
 
 -- 用户角色表
 drop table sys_user_role;
 create table if not exists sys_user_role
 (
-    id      bigint       not null comment '主键'
+    id      bigint not null comment '主键'
         primary key,
-    user_id varchar(100) not null comment '用户id',
-    role_id varchar(100) not null comment '角色id'
+    user_id bigint not null comment '用户id',
+    role_id bigint not null comment '角色id'
 )
     comment '用户角色表';
 truncate table sys_user_role;
@@ -136,10 +135,10 @@ insert into sys_user_role value (1, 1, 1), (2, 2, 2);
 drop table sys_role_menu;
 create table if not exists sys_role_menu
 (
-    id      bigint       not null comment '主键'
+    id      bigint not null comment '主键'
         primary key,
-    role_id varchar(100) not null comment '角色id',
-    menu_id varchar(100) not null comment '菜单ID'
+    role_id bigint not null comment '角色id',
+    menu_id bigint not null comment '菜单ID'
 )
     comment '角色功能表';
 truncate table sys_role_menu;
@@ -157,7 +156,6 @@ create table if not exists sys_dict_type
     code        varchar(100)                       not null comment '字典名称',
     name        varchar(100)                       not null comment '字典类型',
     remarks     varchar(500)                       null comment '备注',
-
     is_delete   tinyint  default 0                 not null comment '是否删除，0否，1是',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     update_time datetime default CURRENT_TIMESTAMP null comment '修改时间',
@@ -175,9 +173,8 @@ create table if not exists sys_dict_data
         primary key,
     dict_key    varchar(100)                       not null comment '字典项key',
     dict_value  varchar(100)                       not null comment '字典项value',
-    type_id     varchar(100)                       not null comment '字典类型标识',
+    type_id     bigint                             not null comment '字典类型标识',
     sort        tinyint  default 1                 not null comment '字典项排序',
-
     is_delete   tinyint  default 0                 not null comment '是否删除，0否，1是',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     update_time datetime default CURRENT_TIMESTAMP null comment '修改时间',
