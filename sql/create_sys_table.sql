@@ -106,15 +106,15 @@ create table if not exists sys_menu
     comment '菜单功能表';
 truncate table sys_menu;
 insert into sys_menu
-values (0, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, default, default, default),
-       (1, 'system', '系统配置', 0, 1, '0,1', 2, 2, null, null, 0, default, default, default, default),
-       (2, 'orgMgr', '机构管理', 1, 1, '0,1,2', 3, 3, null, null, 0, default, default, default,
+values (1, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, default, default, default),
+       (2, 'system', '系统配置', 1, 1, '0,1', 2, 2, null, null, 0, default, default, default, default),
+       (3, 'orgMgr', '机构管理', 2, 1, '0,1,2', 3, 3, null, null, 0, default, default, default,
         default),
-       (3, 'userMgr', '用户管理', 1, 2, '0,1,3', 3, 3, null, null, 0, default, default, default,
+       (4, 'userMgr', '用户管理', 2, 2, '0,1,3', 3, 3, null, null, 0, default, default, default,
         default),
-       (4, 'userMgr:list', '用户管理-查看', 3, 1, '0,1,3,4', 4, 4, null, null, 0, default, default,
+       (5, 'userMgr:list', '用户管理-查看', 4, 1, '0,1,3,4', 4, 4, null, null, 0, default, default,
         default, default),
-       (5, 'userMgr:add', '用户管理-新增', 3, 2, '0,1,3,5', 4, 4, null, null, 0, default, default,
+       (6, 'userMgr:add', '用户管理-新增', 4, 2, '0,1,3,5', 4, 4, null, null, 0, default, default,
         default, default);
 
 -- 用户角色表

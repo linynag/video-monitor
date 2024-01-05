@@ -60,7 +60,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
             }
         }
 
-
         super.save(sysMenu);
     }
 
