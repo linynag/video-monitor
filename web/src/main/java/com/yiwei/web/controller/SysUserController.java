@@ -1,14 +1,12 @@
 package com.yiwei.web.controller;
 
 import com.yiwei.common.ResponseResult;
+import com.yiwei.web.domain.login.LoginRequest;
 import com.yiwei.web.entity.SysUser;
 import com.yiwei.web.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/sys/user")
@@ -16,32 +14,29 @@ public class SysUserController {
     @Autowired
     private SysUserService userService;
 
-    @RequestMapping("/login")
-    @PostMapping
-    public ResponseResult login(@RequestBody SysUser user) {
-        return userService.login(user);
+    @PostMapping("/login")
+    public ResponseResult login(@RequestBody LoginRequest loginRequest) {
+        return userService.login(loginRequest);
     }
 
 
-    @RequestMapping("/logout")
+    @GetMapping("/logout")
     public ResponseResult logout() {
         return userService.logout();
     }
 
 
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public String list() {
         return "用户管理中心:查看";
 
     }
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
     @PreAuthorize("hasAuthority('userMgr:add')")
     public String add() {
         return "用户管理中心:新增";
     }
 
-    // @GetMapping("/list")
-    // public void listUserByPage() {
-    // }
+
 }

@@ -1,6 +1,7 @@
 package com.yiwei.web.service;
 
 import com.yiwei.common.ResponseResult;
+import com.yiwei.web.domain.login.LoginRequest;
 import com.yiwei.web.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-01-03 11:19:27
 */
 public interface SysUserService extends IService<SysUser> {
-    ResponseResult login(SysUser user);
+    ResponseResult login(LoginRequest loginRequest);
 
     ResponseResult logout();
 }

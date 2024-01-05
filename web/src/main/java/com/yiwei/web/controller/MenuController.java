@@ -1,7 +1,8 @@
 package com.yiwei.web.controller;
 
 
-import com.yiwei.web.domain.SysMenuVO;
+import com.yiwei.web.domain.sysMenu.MenuAddRequest;
+import com.yiwei.web.domain.sysMenu.MenuVO;
 import com.yiwei.web.entity.SysMenu;
 import com.yiwei.web.service.SysMenuService;
 import io.swagger.annotations.Api;
@@ -21,15 +22,15 @@ public class MenuController {
 
     @PostMapping("/add")
     @ApiOperation("添加菜单")
-    public void addMenu(@RequestBody SysMenu menu) {
-        menuService.addMenu(menu);
+    public void addMenu(@RequestBody MenuAddRequest menuAddRequest) {
+        menuService.addMenu(menuAddRequest);
     }
 
 
     @GetMapping("/list/page")
     @ApiOperation("查询菜单")
-    public List<SysMenuVO> getMenuTree() {
-        List<SysMenuVO> menuTree = menuService.getMenuTree();
+    public List<MenuVO> getMenuTree() {
+        List<MenuVO> menuTree = menuService.getMenuTree();
         return menuTree;
     }
 

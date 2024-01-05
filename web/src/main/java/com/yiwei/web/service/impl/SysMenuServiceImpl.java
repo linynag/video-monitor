@@ -4,7 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yiwei.web.domain.SysMenuVO;
+import com.yiwei.web.domain.sysMenu.MenuAddRequest;
+import com.yiwei.web.domain.sysMenu.MenuVO;
 import com.yiwei.web.entity.SysMenu;
 import com.yiwei.web.mapper.SysMenuMapper;
 import com.yiwei.web.service.SysMenuService;
@@ -25,33 +26,42 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         implements SysMenuService {
 
     @Override
-    public List<SysMenuVO> getMenuTree() {
+    public List<MenuVO> getMenuTree() {
         Wrapper queryObj = new QueryWrapper<>().orderByAsc("level", "sort");
         List<SysMenu> allMenu = super.list(queryObj);
         // 0L：表示根节点的父ID
-        List<SysMenuVO> resultList = transferMenuVo(allMenu, 0L);
+        List<MenuVO> resultList = transferMenuVo(allMenu, 0L);
         return resultList;
     }
 
     @Override
-    public void addMenu(SysMenu menu) {
+    public void addMenu(MenuAddRequest menuAddRequest) {
+        SysMenu sysMenu = new SysMenu();
+        BeanUtils.copyProperties(menuAddRequest, sysMenu);
+        // TODO: 2024/1/5 获取登录人的id
+        sysMenu.setCreateBy(1L);
+
         // 如果插入的当前节点为根节点，parentId指定为0
-        if (menu.getParentId().longValue() == 0) {
-            menu.setLevel(1);// 根节点层级为1
-            menu.setPath(null);// 根节点路径为空
+        if (sysMenu.getParentId().longValue() == 0) {
+            sysMenu.setLevel(1);// 根节点层级为1
+            sysMenu.setNodeType(1);// 根节点类型为1
+            sysMenu.setPath(null);// 根节点路径为空
         } else {
-            SysMenu parentMenu = baseMapper.selectById(menu.getParentId());
+            SysMenu parentMenu = baseMapper.selectById(sysMenu.getParentId());
             if (parentMenu == null) {
                 throw new RuntimeException("未查询到对应的父节点");
             }
-            menu.setLevel(parentMenu.getLevel().intValue() + 1);
+            sysMenu.setLevel(parentMenu.getLevel().intValue() + 1);
+            sysMenu.setNodeType(parentMenu.getNodeType().intValue() + 1);
             if (StringUtils.isNotEmpty(parentMenu.getPath())) {
-                menu.setPath(parentMenu.getPath() + "," + parentMenu.getId());
+                sysMenu.setPath(parentMenu.getPath() + "," + parentMenu.getId());
             } else {
-                menu.setPath(parentMenu.getId().toString());
+                sysMenu.setPath(parentMenu.getId().toString());
             }
         }
-        super.save(menu);
+
+
+        super.save(sysMenu);
     }
 
     /**
@@ -61,15 +71,15 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
      * @param parentId
      * @return
      */
-    private List<SysMenuVO> transferMenuVo(List<SysMenu> allMenu, Long parentId) {
-        List<SysMenuVO> resultList = new ArrayList<>();
+    private List<MenuVO> transferMenuVo(List<SysMenu> allMenu, Long parentId) {
+        List<MenuVO> resultList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(allMenu)) {
             for (SysMenu source : allMenu) {
                 if (parentId.longValue() == source.getParentId().longValue()) {
-                    SysMenuVO menuVo = new SysMenuVO();
+                    MenuVO menuVo = new MenuVO();
                     BeanUtils.copyProperties(source, menuVo);
                     // 递归查询子菜单，并封装信息
-                    List<SysMenuVO> childList = transferMenuVo(allMenu, source.getId());
+                    List<MenuVO> childList = transferMenuVo(allMenu, source.getId());
                     if (!CollectionUtils.isEmpty(childList)) {
                         menuVo.setChildMenu(childList);
                     }

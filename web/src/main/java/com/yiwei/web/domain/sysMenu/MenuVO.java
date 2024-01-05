@@ -1,18 +1,20 @@
-package com.yiwei.web.domain;
+package com.yiwei.web.domain.sysMenu;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.List;
+
 @Data
 @Accessors(chain = true)
-public class SysMenuVO implements Serializable {
-    public static final long serialVersionUID = 1L;
+public class MenuVO implements Serializable {
+
+    public static final long serialVersionUID = -2851202385369647045L;
     /**
      * 子菜单集合
      */
-    List<SysMenuVO> childMenu;
+    List<MenuVO> childMenu;
     /**
      * 主键
      */
