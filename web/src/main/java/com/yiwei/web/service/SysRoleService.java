@@ -1,6 +1,6 @@
 package com.yiwei.web.service;
 
-import com.yiwei.web.domain.SysRole;
+import com.yiwei.web.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

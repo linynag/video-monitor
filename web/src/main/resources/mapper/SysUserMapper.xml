@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yiwei.web.mapper.sysUser.SysUserMapper">
+<mapper namespace="com.yiwei.web.mapper.SysUserMapper">
 
-    <resultMap id="BaseResultMap" type="com.yiwei.web.domain.sysUser.SysUser">
+    <resultMap id="BaseResultMap" type="com.yiwei.web.entity.SysUser">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="account" column="account" jdbcType="VARCHAR"/>
             <result property="password" column="password" jdbcType="VARCHAR"/>

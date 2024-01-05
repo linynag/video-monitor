@@ -1,10 +1,10 @@
-package com.yiwei.web.service.login.impl;
+package com.yiwei.web.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.yiwei.web.domain.login.LoginUser;
-import com.yiwei.web.domain.sysUser.SysUser;
+import com.yiwei.web.domain.LoginUser;
+import com.yiwei.web.entity.SysUser;
 import com.yiwei.web.mapper.SysMenuMapper;
-import com.yiwei.web.mapper.sysUser.SysUserMapper;
+import com.yiwei.web.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

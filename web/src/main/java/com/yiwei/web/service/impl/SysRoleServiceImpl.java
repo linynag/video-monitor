@@ -1,7 +1,7 @@
 package com.yiwei.web.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yiwei.web.domain.SysRole;
+import com.yiwei.web.entity.SysRole;
 import com.yiwei.web.service.SysRoleService;
 import com.yiwei.web.mapper.SysRoleMapper;
 import org.springframework.stereotype.Service;

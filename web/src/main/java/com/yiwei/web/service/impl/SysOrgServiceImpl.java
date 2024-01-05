@@ -1,9 +1,9 @@
-package com.yiwei.web.service.sysOrg.impl;
+package com.yiwei.web.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yiwei.web.domain.sysOrg.SysOrg;
-import com.yiwei.web.service.sysOrg.SysOrgService;
-import com.yiwei.web.mapper.sysOrg.SysOrgMapper;
+import com.yiwei.web.entity.SysOrg;
+import com.yiwei.web.mapper.SysOrgMapper;
+import com.yiwei.web.service.SysOrgService;
 import org.springframework.stereotype.Service;
 
 /**

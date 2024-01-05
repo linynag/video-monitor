@@ -1,13 +1,13 @@
-package com.yiwei.web.service.sysUser.impl;
+package com.yiwei.web.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yiwei.common.ResponseResult;
 import com.yiwei.utils.JwtUtil;
 import com.yiwei.utils.RedisCache;
-import com.yiwei.web.domain.login.LoginUser;
-import com.yiwei.web.domain.sysUser.SysUser;
-import com.yiwei.web.mapper.sysUser.SysUserMapper;
-import com.yiwei.web.service.sysUser.SysUserService;
+import com.yiwei.web.domain.LoginUser;
+import com.yiwei.web.entity.SysUser;
+import com.yiwei.web.mapper.SysUserMapper;
+import com.yiwei.web.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

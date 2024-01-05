@@ -1,7 +1,7 @@
 package com.yiwei.web.controller.sysUser;
 
-import com.yiwei.web.domain.sysUser.SysUser;
-import com.yiwei.web.mapper.sysUser.SysUserMapper;
+import com.yiwei.web.entity.SysUser;
+import com.yiwei.web.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

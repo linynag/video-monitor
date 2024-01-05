@@ -1,4 +1,4 @@
-package com.yiwei.web.domain.sysOrg;
+package com.yiwei.web.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

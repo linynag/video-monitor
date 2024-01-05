@@ -1,25 +1,37 @@
 package com.yiwei.web.controller;
 
-import com.yiwei.web.mapper.SysMenuMapper;
+
+import com.yiwei.web.domain.SysMenuVO;
+import com.yiwei.web.entity.SysMenu;
+import com.yiwei.web.service.SysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sys/menu")
-@Api(tags = "菜单管理")
+@Api(tags = "系统配置中心-菜单管理")
 public class MenuController {
 
     @Autowired
-    private SysMenuMapper menuMapper;
+    private SysMenuService menuService;
+
+    @PostMapping("/add")
+    @ApiOperation("添加菜单")
+    public void addMenu(@RequestBody SysMenu menu) {
+        menuService.addMenu(menu);
+    }
+
 
     @GetMapping("/list/page")
     @ApiOperation("查询菜单")
-    public String listMenuByPage() {
-        menuMapper.selectList(null);
-        return "菜单管理中心:查看";
+    public List<SysMenuVO> getMenuTree() {
+        List<SysMenuVO> menuTree = menuService.getMenuTree();
+        return menuTree;
     }
+
+
 }

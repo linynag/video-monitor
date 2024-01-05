@@ -1,4 +1,4 @@
-package com.yiwei.web.domain;
+package com.yiwei.web.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
- * 菜单功能表
- * @TableName sys_menu
+ * 用户表
+ * @TableName sys_user
  */
-@TableName(value ="sys_menu")
+@TableName(value ="sys_user")
 @Data
-public class SysMenu implements Serializable {
+public class SysUser implements Serializable {
     /**
      * 主键
      */
@@ -22,49 +22,44 @@ public class SysMenu implements Serializable {
     private Long id;
 
     /**
-     * 编码
+     * 用户账号
      */
-    private String code;
+    private String account;
 
     /**
-     * 名称
+     * 用户密码
      */
-    private String name;
+    private String password;
 
     /**
-     * 父类id
+     * 用户昵称
      */
-    private Long parentId;
+    private String username;
 
     /**
-     * 路径
+     * 用户状态，0无效，1有效
      */
-    private String path;
+    private Integer status;
 
     /**
-     * 排序
+     * 用户所属组织
      */
-    private Integer sort;
+    private Long orgId;
 
     /**
-     * 等级
+     * 电话
      */
-    private Integer level;
+    private String phone;
 
     /**
-     * 节点类型，1根节点,2菜单,3页面,4按钮
+     * 邮箱
      */
-    private Integer nodeType;
+    private String email;
 
     /**
-     * 页面对应地址
+     * 性别，1男，2女
      */
-    private String linkUrl;
-
-    /**
-     * 图标地址
-     */
-    private String iconUrl;
+    private Integer sex;
 
     /**
      * 是否删除，0否，1是

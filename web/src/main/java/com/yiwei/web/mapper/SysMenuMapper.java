@@ -1,6 +1,6 @@
 package com.yiwei.web.mapper;
 
-import com.yiwei.web.domain.SysMenu;
+import com.yiwei.web.entity.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

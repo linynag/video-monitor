@@ -1,7 +1,7 @@
-package com.yiwei.web.service.sysOrg;
+package com.yiwei.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yiwei.web.domain.sysOrg.SysOrg;
+import com.yiwei.web.entity.SysOrg;
 
 /**
 * @author EDY

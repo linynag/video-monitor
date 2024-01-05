@@ -1,7 +1,7 @@
-package com.yiwei.web.service.sysUser;
+package com.yiwei.web.service;
 
 import com.yiwei.common.ResponseResult;
-import com.yiwei.web.domain.sysUser.SysUser;
+import com.yiwei.web.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

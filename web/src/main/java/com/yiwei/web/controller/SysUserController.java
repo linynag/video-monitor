@@ -1,8 +1,8 @@
-package com.yiwei.web.controller.sysUser;
+package com.yiwei.web.controller;
 
 import com.yiwei.common.ResponseResult;
-import com.yiwei.web.domain.sysUser.SysUser;
-import com.yiwei.web.service.sysUser.SysUserService;
+import com.yiwei.web.entity.SysUser;
+import com.yiwei.web.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/sys/user")
-@PreAuthorize("hasAuthority('userMgr:list')")
 public class SysUserController {
     @Autowired
     private SysUserService userService;

@@ -2,7 +2,7 @@ package com.yiwei.filter;
 
 import com.yiwei.utils.JwtUtil;
 import com.yiwei.utils.RedisCache;
-import com.yiwei.web.domain.login.LoginUser;
+import com.yiwei.web.domain.LoginUser;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

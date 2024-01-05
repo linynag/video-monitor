@@ -1,7 +1,10 @@
 package com.yiwei.web.service;
 
-import com.yiwei.web.domain.SysMenu;
+import com.yiwei.web.entity.SysMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yiwei.web.domain.SysMenuVO;
+
+import java.util.List;
 
 /**
 * @author EDY
@@ -10,4 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysMenuService extends IService<SysMenu> {
 
+    List<SysMenuVO> getMenuTree();
+
+    void addMenu(SysMenu menu);
 }

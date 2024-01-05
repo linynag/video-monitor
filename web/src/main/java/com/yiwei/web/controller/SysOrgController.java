@@ -1,4 +1,4 @@
-package com.yiwei.web.controller.sysOrg;
+package com.yiwei.web.controller;
 
 import org.springframework.web.bind.annotation.*;
 

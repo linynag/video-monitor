@@ -1,4 +1,4 @@
-package com.yiwei.web.domain.sysUser;
+package com.yiwei.web.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
- * 用户表
- * @TableName sys_user
+ * 角色表
+ * @TableName sys_role
  */
-@TableName(value ="sys_user")
+@TableName(value ="sys_role")
 @Data
-public class SysUser implements Serializable {
+public class SysRole implements Serializable {
     /**
      * 主键
      */
@@ -22,44 +22,24 @@ public class SysUser implements Serializable {
     private Long id;
 
     /**
-     * 用户账号
+     * 角色编码
      */
-    private String account;
+    private String code;
 
     /**
-     * 用户密码
+     * 角色名称
      */
-    private String password;
+    private String name;
 
     /**
-     * 用户昵称
+     * 描述
      */
-    private String username;
+    private String description;
 
     /**
-     * 用户状态，0无效，1有效
-     */
-    private Integer status;
-
-    /**
-     * 用户所属组织
+     * 角色所属组织
      */
     private Long orgId;
-
-    /**
-     * 电话
-     */
-    private String phone;
-
-    /**
-     * 邮箱
-     */
-    private String email;
-
-    /**
-     * 性别，1男，2女
-     */
-    private Integer sex;
 
     /**
      * 是否删除，0否，1是

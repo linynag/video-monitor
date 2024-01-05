@@ -1,7 +1,7 @@
-package com.yiwei.web.domain.login;
+package com.yiwei.web.domain;
 
 import com.alibaba.fastjson2.annotation.JSONField;
-import com.yiwei.web.domain.sysUser.SysUser;
+import com.yiwei.web.entity.SysUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
