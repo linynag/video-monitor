@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yiwei.web.domain.LoginUser;
 import com.yiwei.web.domain.sysMenu.MenuAddRequest;
 import com.yiwei.web.domain.sysMenu.MenuVO;
 import com.yiwei.web.entity.SysMenu;
@@ -11,6 +12,8 @@ import com.yiwei.web.mapper.SysMenuMapper;
 import com.yiwei.web.service.SysMenuService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,8 +41,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     public void addMenu(MenuAddRequest menuAddRequest) {
         SysMenu sysMenu = new SysMenu();
         BeanUtils.copyProperties(menuAddRequest, sysMenu);
-        // TODO: 2024/1/5 获取登录人的id
-        sysMenu.setCreateBy(1L);
+        // 获取登录人的id
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser currentUser = (LoginUser) authentication.getPrincipal();
+        Long userId = currentUser.getUser().getId();
+        sysMenu.setCreateBy(userId);
 
         // 如果插入的当前节点为根节点，parentId指定为0
         if (sysMenu.getParentId().longValue() == 0) {
