@@ -33,7 +33,7 @@ insert into sys_user value
 
 
 -- 组织表
-drop table sys_org;
+drop table if exists sys_org;
 create table if not exists sys_org
 (
     id            bigint                             not null comment '主键'
@@ -118,7 +118,7 @@ values (1, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, defaul
         default, default);
 
 -- 用户角色表
-drop table sys_user_role;
+drop table if exists sys_user_role;
 create table if not exists sys_user_role
 (
     id      bigint not null comment '主键'
@@ -132,7 +132,7 @@ insert into sys_user_role value (1, 1, 1), (2, 2, 2);
 
 
 -- 角色功能表
-drop table sys_role_menu;
+drop table if exists sys_role_menu;
 create table if not exists sys_role_menu
 (
     id      bigint not null comment '主键'
@@ -182,3 +182,4 @@ create table if not exists sys_dict_data
     update_by   bigint                             null comment '修改用户id'
 )
     comment '字典信息表';
+0
