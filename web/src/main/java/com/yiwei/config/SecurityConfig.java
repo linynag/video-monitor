@@ -1,6 +1,7 @@
 package com.yiwei.config;
 
 import com.yiwei.filter.JwtAuthenticationTokenFilter;
+import com.yiwei.web.service.MyUserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,6 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
+        //---------------------------记住用户的登录状态
+        http
+                .rememberMe()
+                .key("new-remember-me-key")
+                .userDetailsService(new MyUserDetailServiceImpl());
 
         //---------------------------认证过滤器的实现----------------------------------
         // 把token校验过滤器添加到过滤器链中

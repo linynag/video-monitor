@@ -22,8 +22,9 @@ public class MenuController {
 
     @PostMapping("/add")
     @ApiOperation("添加菜单")
-    public void addMenu(@RequestBody MenuAddRequest menuAddRequest) {
+    public int addMenu(@RequestBody MenuAddRequest menuAddRequest) {
         menuService.addMenu(menuAddRequest);
+        return 1;
     }
 
 

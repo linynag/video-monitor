@@ -14,6 +14,7 @@ import java.util.List;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
     //由于是多表联查，mybatisplus的BaseMapper接口没有提供，我们需要自定义方法，所以需要创建对应的mapper文件，定义对应的sql语句
     List<String> selectPermsByUserId(Long id);
+
 }
 
 

@@ -37,4 +37,7 @@
                  LEFT JOIN `sys_menu` m ON m.`id` = rm.`menu_id`
         WHERE user_id = #{userid}
     </select>
+    <select id="selectMaxSort" resultType="java.lang.Integer">
+
+    </select>
 </mapper>

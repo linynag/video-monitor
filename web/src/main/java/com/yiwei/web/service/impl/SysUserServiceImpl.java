@@ -14,9 +14,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -78,6 +80,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         redisCache.deleteObject("login:" + userid);
 
         return new ResponseResult(200, "注销成功");
+    }
+
+    @Override
+    public SysUser getLoginUser() {
+        // 获取登录人
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser currentUser = (LoginUser) authentication.getPrincipal();
+        return currentUser.getUser();
     }
 }
 

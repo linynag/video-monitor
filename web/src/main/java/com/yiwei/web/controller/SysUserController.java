@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/sys/user")
 public class SysUserController {
@@ -26,6 +28,8 @@ public class SysUserController {
     }
 
 
+
+
     @PostMapping("/list")
     public String list() {
         return "用户管理中心:查看";
@@ -37,6 +41,8 @@ public class SysUserController {
     public String add() {
         return "用户管理中心:新增";
     }
+
+
 
 
 }

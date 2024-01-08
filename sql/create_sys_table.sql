@@ -116,6 +116,16 @@ values (1, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, defaul
         default, default),
        (6, 'userMgr:add', '用户管理-新增', 4, 2, '0,1,3,5', 4, 4, null, null, 0, default, default,
         default, default);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744255204433260545, 'root', '根路径', 0, 1, null, 1, 1, null, null, 0, '2024-01-08 15:10:22', '2024-01-08 15:10:22', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744261514797166593, 'dataDriver', '数据驾驶仓', 1744255204433260545, 1, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:35:26', '2024-01-08 15:35:26', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262286238724098, 'mapMonitorCentor', '地图监控中心', 1744255204433260545, 2, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:38:30', '2024-01-08 15:38:30', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262396104323073, 'videoMonitorCentor', '视频监控中心', 1744255204433260545, 3, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:38:56', '2024-01-08 15:38:56', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262763382747138, 'riskWarningCentor', '风险预警中心', 1744255204433260545, 4, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:40:24', '2024-01-08 15:40:24', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263128035536897, 'dataDashboards', '大数据看板', 1744255204433260545, 5, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:41:51', '2024-01-08 15:41:51', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263373825945601, 'vehicleMgr', '车辆管理', 1744255204433260545, 6, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:42:49', '2024-01-08 15:42:49', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263499000754178, 'deviceMgr', '设备管理', 1744255204433260545, 7, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:19', '2024-01-08 15:43:19', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263550670385154, 'sysMgr', '系统管理', 1744255204433260545, 8, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:31', '2024-01-08 15:43:31', 1, null);
+
 
 -- 用户角色表
 drop table if exists sys_user_role;
