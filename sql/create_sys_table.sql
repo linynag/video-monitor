@@ -105,26 +105,19 @@ create table if not exists sys_menu
 )
     comment '菜单功能表';
 truncate table sys_menu;
-insert into sys_menu
-values (1, 'root', '根节点', 0, 1, null, 1, 1, null, null, 0, default, default, default, default),
-       (2, 'system', '系统配置', 1, 1, '0,1', 2, 2, null, null, 0, default, default, default, default),
-       (3, 'orgMgr', '机构管理', 2, 1, '0,1,2', 3, 3, null, null, 0, default, default, default,
-        default),
-       (4, 'userMgr', '用户管理', 2, 2, '0,1,3', 3, 3, null, null, 0, default, default, default,
-        default),
-       (5, 'userMgr:list', '用户管理-查看', 4, 1, '0,1,3,4', 4, 4, null, null, 0, default, default,
-        default, default),
-       (6, 'userMgr:add', '用户管理-新增', 4, 2, '0,1,3,5', 4, 4, null, null, 0, default, default,
-        default, default);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744255204433260545, 'root', '根路径', 0, 1, null, 1, 1, null, null, 0, '2024-01-08 15:10:22', '2024-01-08 15:10:22', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744261514797166593, 'dataDriver', '数据驾驶仓', 1744255204433260545, 1, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:35:26', '2024-01-08 15:35:26', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262286238724098, 'mapMonitorCentor', '地图监控中心', 1744255204433260545, 2, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:38:30', '2024-01-08 15:38:30', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262396104323073, 'videoMonitorCentor', '视频监控中心', 1744255204433260545, 3, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:38:56', '2024-01-08 15:38:56', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744262763382747138, 'riskWarningCentor', '风险预警中心', 1744255204433260545, 4, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:40:24', '2024-01-08 15:40:24', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263128035536897, 'dataDashboards', '大数据看板', 1744255204433260545, 5, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:41:51', '2024-01-08 15:41:51', 1, null);
-INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263373825945601, 'vehicleMgr', '车辆管理', 1744255204433260545, 6, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:42:49', '2024-01-08 15:42:49', 1, null);
-INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263499000754178, 'deviceMgr', '设备管理', 1744255204433260545, 7, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:19', '2024-01-08 15:43:19', 1, null);
-INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263550670385154, 'sysMgr', '系统管理', 1744255204433260545, 8, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:31', '2024-01-08 15:43:31', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263373825945601, 'vehicleMngCenter', '车辆管理中心', 1744255204433260545, 6, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:42:49', '2024-01-08 15:42:49', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263499000754178, 'deviceMngCenter', '设备管理中心', 1744255204433260545, 7, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:19', '2024-01-08 15:43:19', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263550670385154, 'sysConfigCenter', '系统配置中心', 1744255204433260545, 8, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:31', '2024-01-08 15:43:31', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321223235383297, 'orgMgr', '机构管理', 1744263550670385154, 1, '1744255204433260545,1744263550670385154', 3, 3, null, null, 0, '2024-01-08 19:32:42', '2024-01-08 19:32:42', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321375257931778, 'userMgr:list', '用户管理-查看', 1744321223235383297, 1, '1744255204433260545,1744263550670385154,1744321223235383297', 4, 4, null, null, 0, '2024-01-08 19:33:18', '2024-01-08 19:33:18', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321437518180353, 'userMgr:add', '用户管理-新增', 1744321223235383297, 1, '1744255204433260545,1744263550670385154,1744321223235383297', 4, 4, null, null, 0, '2024-01-08 19:33:33', '2024-01-08 19:33:33', 1, null);
+
 
 
 -- 用户角色表
@@ -152,10 +145,10 @@ create table if not exists sys_role_menu
 )
     comment '角色功能表';
 truncate table sys_role_menu;
-insert into sys_role_menu
-values (1, 1, 4),
-       (2, 1, 5),
-       (3, 2, 4);
+INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (1, 1, 1744321375257931778);
+INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (2, 1, 1744321437518180353);
+INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (3, 2, 1744321437518180353);
+
 
 -- 字典类型表
 drop table if exists sys_dict_type;
@@ -192,4 +185,3 @@ create table if not exists sys_dict_data
     update_by   bigint                             null comment '修改用户id'
 )
     comment '字典信息表';
-0

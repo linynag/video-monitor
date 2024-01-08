@@ -28,12 +28,21 @@ public class MenuController {
     }
 
 
-    @GetMapping("/list/page")
+    @GetMapping("/list")
     @ApiOperation("查询菜单")
     public List<MenuVO> getMenuTree() {
         List<MenuVO> menuTree = menuService.getMenuTree();
         return menuTree;
     }
+
+    @GetMapping("/list/{id}")
+    @ApiOperation("查询菜单-通过userId")
+    public List<MenuVO> queryMenuByUserId(@PathVariable Long id) {
+        List<MenuVO> menuTree = menuService.queryMenuByUserId(id);
+        return menuTree;
+    }
+
+
 
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author EDY
 * @description 针对表【sys_role_menu(角色功能表)】的数据库操作Service实现
-* @createDate 2024-01-08 19:54:31
+* @createDate 2024-01-08 19:55:56
 */
 @Service
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu>

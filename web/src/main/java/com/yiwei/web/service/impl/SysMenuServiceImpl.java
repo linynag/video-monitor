@@ -3,25 +3,27 @@ package com.yiwei.web.service.impl;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yiwei.web.domain.LoginUser;
+import com.yiwei.web.entity.SysRoleMenu;
+import com.yiwei.web.entity.SysUserRole;
 import com.yiwei.web.domain.sysMenu.MenuAddRequest;
 import com.yiwei.web.domain.sysMenu.MenuVO;
 import com.yiwei.web.entity.SysMenu;
 import com.yiwei.web.entity.SysUser;
 import com.yiwei.web.mapper.SysMenuMapper;
 import com.yiwei.web.service.SysMenuService;
+import com.yiwei.web.service.SysRoleMenuService;
+import com.yiwei.web.service.SysUserRoleService;
 import com.yiwei.web.service.SysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author EDY
@@ -34,6 +36,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
 
     @Autowired
     private SysUserService userService;
+    @Autowired
+    private SysUserRoleService userRoleService;
 
     @Override
     public List<MenuVO> getMenuTree() {
@@ -111,6 +115,49 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
             }
         }
         return resultList;
+    }
+
+    @Autowired
+    private SysRoleMenuService roleMenuService;
+
+    @Override
+    public List<MenuVO> queryMenuByUserId(Long userId) {
+        // 1、先查询当前用户对应的角色
+        Wrapper queryUserRoleObj = new QueryWrapper<>().eq("user_id", userId);
+        List<SysUserRole> userRoles = userRoleService.list(queryUserRoleObj);
+        if (!CollectionUtils.isEmpty(userRoles)) {
+            // 2、通过角色查询菜单（默认取第一个角色）
+            Wrapper queryRoleMenuObj = new QueryWrapper<>().eq("role_id", userRoles.get(0).getRoleId());
+            List<SysRoleMenu> roleMenus = roleMenuService.list(queryRoleMenuObj);
+            if (!CollectionUtils.isEmpty(roleMenus)) {
+                Set<Long> menuIds = new HashSet<>();
+                for (SysRoleMenu roleMenu : roleMenus) {
+                    menuIds.add(roleMenu.getMenuId());
+                }
+                // 查询对应的菜单
+                Wrapper queryMenuObj = new QueryWrapper<>().in("id", new ArrayList<>(menuIds));
+                List<SysMenu> menus = super.list(queryMenuObj);
+                if (!CollectionUtils.isEmpty(menus)) {
+                    // 将菜单下对应的父节点也一并全部查询出来
+                    Set<Long> allMenuIds = new HashSet<>();
+                    for (SysMenu menu : menus) {
+                        allMenuIds.add(menu.getId());
+                        if (StringUtils.isNotEmpty(menu.getPath())) {
+                            String[] pathIds = StringUtils.split(",", menu.getPath());
+                            for (String pathId : pathIds) {
+                                allMenuIds.add(Long.valueOf(pathId));
+                            }
+                        }
+                    }
+                    // 3、查询对应的所有菜单,并进行封装展示
+                    List<SysMenu> allMenus = super.list(new QueryWrapper<SysMenu>().in("id", new ArrayList<>(allMenuIds)));
+                    List<MenuVO> resultList = transferMenuVo(allMenus, 0L);
+                    return resultList;
+                }
+            }
+
+        }
+        return null;
     }
 }
 
