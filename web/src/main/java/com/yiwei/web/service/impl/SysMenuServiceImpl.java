@@ -142,8 +142,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
                     Set<Long> allMenuIds = new HashSet<>();
                     for (SysMenu menu : menus) {
                         allMenuIds.add(menu.getId());
-                        if (StringUtils.isNotEmpty(menu.getPath())) {
-                            String[] pathIds = StringUtils.split(",", menu.getPath());
+                        String path = menu.getPath();
+                        if (StringUtils.isNotEmpty(path)) {
+                            String[] pathIds = StringUtils.split( path,",");
                             for (String pathId : pathIds) {
                                 allMenuIds.add(Long.valueOf(pathId));
                             }
