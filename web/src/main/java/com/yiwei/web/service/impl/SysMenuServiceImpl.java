@@ -76,16 +76,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
                 menu.setPath(parentMenu.getPath() + "," + parentMenu.getId());
             } else {
                 menu.setPath(parentMenu.getId().toString());
-                //     查询同样父路径下的最大排序
-                QueryWrapper<SysMenu> menuQueryWrapper = new QueryWrapper<>();
-                menuQueryWrapper.eq("parent_id", parentMenu.getId())
-                        .orderByDesc("sort").last("limit 1");
-                SysMenu maxSortMenu = baseMapper.selectOne(menuQueryWrapper);
-                if (maxSortMenu.getSort() != null) {
-                    menu.setSort(maxSortMenu.getSort() + 1);
-                }
+            }
+            // 查询同样父路径下的最大排序
+            QueryWrapper<SysMenu> menuQueryWrapper = new QueryWrapper<>();
+            menuQueryWrapper.eq("parent_id", parentMenu.getId())
+                    .orderByDesc("sort").last("limit 1");
+            SysMenu maxSortMenu = baseMapper.selectOne(menuQueryWrapper);
+            if (maxSortMenu.getSort() != null) {
+                menu.setSort(maxSortMenu.getSort() + 1);
             }
         }
+
 
         super.save(menu);
     }
@@ -144,7 +145,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
                         allMenuIds.add(menu.getId());
                         String path = menu.getPath();
                         if (StringUtils.isNotEmpty(path)) {
-                            String[] pathIds = StringUtils.split( path,",");
+                            String[] pathIds = StringUtils.split(path, ",");
                             for (String pathId : pathIds) {
                                 allMenuIds.add(Long.valueOf(pathId));
                             }

@@ -116,7 +116,7 @@ INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_t
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744263550670385154, 'sysConfigCenter', '系统配置中心', 1744255204433260545, 8, '1744255204433260545', 2, 2, null, null, 0, '2024-01-08 15:43:31', '2024-01-08 15:43:31', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321223235383297, 'orgMgr', '机构管理', 1744263550670385154, 1, '1744255204433260545,1744263550670385154', 3, 3, null, null, 0, '2024-01-08 19:32:42', '2024-01-08 19:32:42', 1, null);
 INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321375257931778, 'userMgr:list', '用户管理-查看', 1744321223235383297, 1, '1744255204433260545,1744263550670385154,1744321223235383297', 4, 4, null, null, 0, '2024-01-08 19:33:18', '2024-01-08 19:33:18', 1, null);
-INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321437518180353, 'userMgr:add', '用户管理-新增', 1744321223235383297, 1, '1744255204433260545,1744263550670385154,1744321223235383297', 4, 4, null, null, 0, '2024-01-08 19:33:33', '2024-01-08 19:33:33', 1, null);
+INSERT INTO my_db.sys_menu (id, code, name, parent_id, sort, path, level, node_type, link_url, icon_url, is_delete, create_time, update_time, create_by, update_by) VALUES (1744321437518180353, 'userMgr:add', '用户管理-新增', 1744321223235383297, 2, '1744255204433260545,1744263550670385154,1744321223235383297', 4, 4, null, null, 0, '2024-01-08 19:33:33', '2024-01-08 19:33:33', 1, null);
 
 
 
@@ -147,7 +147,7 @@ create table if not exists sys_role_menu
 truncate table sys_role_menu;
 INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (1, 1, 1744321375257931778);
 INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (2, 1, 1744321437518180353);
-INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (3, 2, 1744321437518180353);
+INSERT INTO my_db.sys_role_menu (id, role_id, menu_id) VALUES (3, 2, 1744321375257931778);
 
 
 -- 字典类型表
