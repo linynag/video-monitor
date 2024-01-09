@@ -17,6 +17,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
+ * springSecurity的主配置文件。
  * 实现Security提供的WebSecurityConfigurerAdapter类，就可以改变密码校验的规则了
  */
 @Configuration
@@ -29,14 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //---------------------------认证过滤器的实现----------------------------------
     @Autowired
-    // 注入Security提供的认证失败的处理器，这个处理器里面的AuthenticationEntryPointImpl实现类，用的不是官方的了，
-    // 而是用的是我们在handler目录写好的AuthenticationEntryPointImpl实现类，因为我们也是添加到容器把官方的这个实现类覆盖了
+    // 注入Security提供的认证失败的处理器，这个处理器里面的AuthenticationEntryPointImpl实现类覆盖官方的处理类
     private AuthenticationEntryPoint authenticationEntryPoint;
 
     //---------------------------登录接口的实现----------------------------------
     @Autowired
-    // 注入Security提供的授权失败的处理器，这个处理器里面的AccessDeniedHandlerImpl实现类，用的不是官方的了，
-    // 而是用的是我们在handler目录写好的AccessDeniedHandlerImpl实现类，因为我们也是添加到容器把官方的这个实现类覆盖了
+    // 注入Security提供的授权失败的处理器，这个处理器里面的AccessDeniedHandlerImpl实现类覆盖官方的处理类
     private AccessDeniedHandler accessDeniedHandler;
 
     @Bean
@@ -69,11 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
-        //---------------------------记住用户的登录状态
-        http
-                .rememberMe()
-                .key("new-remember-me-key")
-                .userDetailsService(new MyUserDetailServiceImpl());
+
 
         //---------------------------认证过滤器的实现----------------------------------
         // 把token校验过滤器添加到过滤器链中

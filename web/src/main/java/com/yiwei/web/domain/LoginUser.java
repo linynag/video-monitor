@@ -61,7 +61,6 @@ public class LoginUser implements UserDetails {
     @Override
     // 用于获取用户名。由于使用的实体类是User，所以获取的是数据库的用户名
     public String getUsername() {
-        // TODO: 2024/1/3 确认账号还是昵称
         return user.getAccount();
     }
 

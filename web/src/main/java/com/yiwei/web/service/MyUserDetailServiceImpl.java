@@ -38,10 +38,6 @@ public class MyUserDetailServiceImpl implements UserDetailsService {
             throw new RuntimeException("用户名或者密码错误");
         }
 
-        //--------------------------------查询用户权限信息---------------------------------
-
-        // 由于我们自定义了3个权限，所以用List集合存储。注意权限实际就是'有特殊含义的字符串'，所以下面的三个字符串就是自定义的
-        // 下面那行就是我们的权限集合，等下还要在LoginUser类做权限集合的转换
 
         //-------------------------------查询来自数据库的权限信息--------------------------------
         // List<String> list = new ArrayList<>(Arrays.asList("list", "adminAuth", "huanfAuth"));

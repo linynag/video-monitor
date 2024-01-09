@@ -3,7 +3,7 @@ server:
 spring:
   # 默认 dev 环境
   profiles:
-    active: test
+    active: dev
   # 数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
