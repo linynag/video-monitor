@@ -5,8 +5,6 @@ import com.yiwei.common.ResponseResult;
 import com.yiwei.web.domain.login.LoginRequest;
 import com.yiwei.web.entity.SysUser;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author EDY
  * @description 针对表【sys_user(用户表)】的数据库操作Service
@@ -24,5 +22,5 @@ public interface SysUserService extends IService<SysUser> {
      * @param
      * @return
      */
-    SysUser getLoginUser();
+    SysUser getCurrentUser();
 }

@@ -83,7 +83,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     }
 
     @Override
-    public SysUser getLoginUser() {
+    public SysUser getCurrentUser() {
         // 获取登录人
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         LoginUser currentUser = (LoginUser) authentication.getPrincipal();

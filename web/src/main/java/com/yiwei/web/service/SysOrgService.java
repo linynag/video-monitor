@@ -1,7 +1,11 @@
 package com.yiwei.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yiwei.web.domain.sysOrg.OrgAddRequest;
+import com.yiwei.web.domain.sysOrg.OrgVO;
 import com.yiwei.web.entity.SysOrg;
+
+import java.util.List;
 
 /**
 * @author EDY
@@ -10,4 +14,9 @@ import com.yiwei.web.entity.SysOrg;
 */
 public interface SysOrgService extends IService<SysOrg> {
 
+    List<OrgVO> getOrgTree();
+
+    List<OrgVO> getCurrnetUserOrgTree();
+
+    SysOrg addOrg(OrgAddRequest orgAddRequest);
 }

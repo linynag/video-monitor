@@ -3,7 +3,6 @@ package com.yiwei.web.controller;
 
 import com.yiwei.web.domain.sysMenu.MenuAddRequest;
 import com.yiwei.web.domain.sysMenu.MenuVO;
-import com.yiwei.web.entity.SysMenu;
 import com.yiwei.web.service.SysMenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,21 +27,26 @@ public class MenuController {
     }
 
 
-    @GetMapping("/list")
-    @ApiOperation("查询菜单")
+    @GetMapping("/getMenuTree")
+    @ApiOperation("查询菜单列表")
     public List<MenuVO> getMenuTree() {
         List<MenuVO> menuTree = menuService.getMenuTree();
         return menuTree;
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/getMenuTree/{id}")
     @ApiOperation("查询菜单-通过userId")
-    public List<MenuVO> queryMenuByUserId(@PathVariable Long id) {
-        List<MenuVO> menuTree = menuService.queryMenuByUserId(id);
+    public List<MenuVO> queryMenuTreeByUserId(@PathVariable Long id) {
+        List<MenuVO> menuTree = menuService.queryMenuTreeByUserId(id);
         return menuTree;
     }
 
-
+    @GetMapping("/getMenuTree/current")
+    @ApiOperation("查询菜单-当前用户")
+    public List<MenuVO> queryCurrentMenuTree() {
+        List<MenuVO> menuTree = menuService.queryCurrentMenuTree();
+        return menuTree;
+    }
 
 
 }

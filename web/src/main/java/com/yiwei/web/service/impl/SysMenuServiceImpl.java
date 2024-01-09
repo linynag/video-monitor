@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.yiwei.web.entity.SysRoleMenu;
-import com.yiwei.web.entity.SysUserRole;
 import com.yiwei.web.domain.sysMenu.MenuAddRequest;
 import com.yiwei.web.domain.sysMenu.MenuVO;
 import com.yiwei.web.entity.SysMenu;
+import com.yiwei.web.entity.SysRoleMenu;
 import com.yiwei.web.entity.SysUser;
+import com.yiwei.web.entity.SysUserRole;
 import com.yiwei.web.mapper.SysMenuMapper;
 import com.yiwei.web.service.SysMenuService;
 import com.yiwei.web.service.SysRoleMenuService;
@@ -38,6 +38,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
     private SysUserService userService;
     @Autowired
     private SysUserRoleService userRoleService;
+    @Autowired
+    private SysRoleMenuService roleMenuService;
 
     @Override
     public List<MenuVO> getMenuTree() {
@@ -56,7 +58,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         menu.setName(menuAddRequest.getName());
         menu.setParentId(menuAddRequest.getParentId());
 
-        SysUser currentUser = userService.getLoginUser();
+        SysUser currentUser = userService.getCurrentUser();
         Long userId = currentUser.getId();
         menu.setCreateBy(userId);
 
@@ -93,10 +95,6 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
 
     /**
      * 封装菜单视图
-     *
-     * @param allMenu
-     * @param parentId
-     * @return
      */
     private List<MenuVO> transferMenuVo(List<SysMenu> allMenu, Long parentId) {
         List<MenuVO> resultList = new ArrayList<>();
@@ -118,11 +116,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
         return resultList;
     }
 
-    @Autowired
-    private SysRoleMenuService roleMenuService;
-
     @Override
-    public List<MenuVO> queryMenuByUserId(Long userId) {
+    public List<MenuVO> queryMenuTreeByUserId(Long userId) {
         // 1、先查询当前用户对应的角色
         Wrapper queryUserRoleObj = new QueryWrapper<>().eq("user_id", userId);
         List<SysUserRole> userRoles = userRoleService.list(queryUserRoleObj);
@@ -160,6 +155,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu>
 
         }
         return null;
+    }
+
+    @Override
+    public List<MenuVO> queryCurrentMenuTree() {
+        SysUser currentUser = userService.getCurrentUser();
+        List<MenuVO> menuVOS = queryMenuTreeByUserId(currentUser.getId());
+        return menuVOS;
     }
 }
 
